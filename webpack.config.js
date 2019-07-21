@@ -10,7 +10,7 @@ module.exports = {
   output: {
     path: path.resolve(__dirname, "./dist"),
     filename: "app.js",
-    publicPath: "/dist/"
+    publicPath: "/"
   },
   module: {
     rules: [
@@ -32,12 +32,21 @@ module.exports = {
           },
           "css-loader"
         ]
+      },
+      {
+        test: /\.(png|jpe?g|gif)$/,
+        use: [
+          {
+            loader: "file-loader",
+            options: {}
+          }
+        ]
       }
     ]
   },
   plugins: [
     new HtmlWebpackPlugin({
-      template: "./client/index.html"
+      template: "./public/index.html"
     }),
     new MiniCssExtractPlugin({
       // Options similar to the same options in webpackOptions.output

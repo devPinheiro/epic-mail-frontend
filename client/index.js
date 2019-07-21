@@ -1,6 +1,6 @@
 import React from "react";
 import ReactDOM from "react-dom";
-import App from "./components/Home";
+import App from "./pages/Main";
 import "./styles/main.css";
 
 const app = document.getElementById("app");
