@@ -1,24 +1,15 @@
-import React, { Component } from 'react';
-import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
-import Header from '../layout/Header';
-import Footer from '../layout/Footer';
-import Landing from '../pages/Home';
+import React, { Component } from "react";
+import { BrowserRouter as Router } from "react-router-dom";
+import Main from "../pages/AppRouter";
 
 class App extends Component {
-    render() {
-        return (
-           <Router>
-               <Header />
-                    <Switch>
-                        <Route component={Landing} exact path="/" />
-                    </Switch>
-               <Footer />
-           </Router>
-                
-           
-        )
-    }
+  render() {
+    return (
+      <Router>
+        <Main />
+      </Router>
+    );
+  }
 }
-
 
 export default App;
