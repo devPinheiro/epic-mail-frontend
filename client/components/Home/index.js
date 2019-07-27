@@ -5,6 +5,9 @@ class Home extends Component {
     return (
       <div>
         <h1>Epic Mail A</h1>
+        <h1>Epic Mail A</h1>
+        <h1>Epic Mail A</h1>
+        <h1>Epic Mail A</h1>
       </div>
     );
   }
