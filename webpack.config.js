@@ -1,16 +1,11 @@
-const path = require("path");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
+const devMode = process.env.NODE_ENV !== "production";
 
 module.exports = {
   mode: process.env.NODE_ENV || "development",
   entry: {
     index: ["./client/index.js"]
-  },
-  output: {
-    path: path.resolve(__dirname, "./dist"),
-    filename: "app.js",
-    publicPath: "/"
   },
   module: {
     rules: [
@@ -51,8 +46,8 @@ module.exports = {
     new MiniCssExtractPlugin({
       // Options similar to the same options in webpackOptions.output
       // both options are optional
-      filename: "app.css",
-      chunkFilename: "[id].css"
+      filename: devMode ? "[name].css" : "[name].[hash].css",
+      chunkFilename: devMode ? "[id].css" : "[id].[hash].css"
     })
   ]
 };
