@@ -4,13 +4,15 @@
   "description": "Epic mail UI react",
   "main": "index.js",
   "scripts": {
-    "start": "webpack-dev-server --mode development --open --hot ",
-    "build": "webpack mode --production",
+    "dev": "webpack-dev-server --mode development --open --hot ",
+    "build": "webpack --mode production",
+    "start": "node server.js",
     "test": "jest",
     "test:watch": "jest --watchAll --coverage",
     "test:coverage": "jest --coverage --coverageReporters=text-lcov | coveralls",
     "format": "pretty-quick",
-    "lint": "eslint ./"
+    "lint": "eslint ./",
+    "heroku-postbuild": "npm run build"
   },
   "husky": {
     "hooks": {
@@ -43,6 +45,7 @@
     "webpack-dev-server": "^3.7.2"
   },
   "dependencies": {
+    "express": "^4.17.1",
     "react": "^16.8.6",
     "react-dom": "^16.8.6"
   }
