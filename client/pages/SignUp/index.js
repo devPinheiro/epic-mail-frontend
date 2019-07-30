@@ -18,9 +18,10 @@ class index extends Component {
       password: "",
       recoveryEmail: "",
       validationErrors: {},
-      serverErrors: {},
-      isSubmitting: false
+      isSubmitting: false,
+      serverError: {}
     };
+
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
     this.handleBlur = this.handleBlur.bind(this);
@@ -35,40 +36,42 @@ class index extends Component {
       SignUpValidator.validateSync(this.state, {
         abortEarly: false
       });
+      this.setState({ validationErrors: null });
     } catch (error) {
-      console.log(error.inner);
-      this.setState({ validationErrors: error.inner ? error : "" });
+      if (!error) this.setState({ validationErrors: "" });
+
+      const formatError = {};
+      error.inner.forEach(error => (formatError[error.path] = error.message));
+
+      this.setState({ validationErrors: formatError });
     }
   }
 
   handleSubmit(e) {
     e.preventDefault();
     this.handleBlur();
-    this.setState({ isSubmitting: true });
-    const data = {
-      firstName: this.state.firstName,
-      lastName: this.state.lastName,
-      email: this.state.email,
-      password: this.state.password,
-      recoveryEmail: this.state.recoveryEmail
-    };
-    this.props.signUp(data, this.props.history);
-    e.target.firstName.value = "";
-    e.target.lastName.value = "";
-    e.target.email.value = "";
-    e.target.password.value = "";
-    e.target.recoveryEmail.value = "";
-    this.setState({ isSubmitting: false });
-  }
-
-  componentWillReceiveProps(nextProps) {
-    if (nextProps.errors) {
-      this.setState({ serverErrors: nextProps.errors });
+    const { validationErrors } = this.state;
+    if (!validationErrors) {
+      this.setState({ isSubmitting: true });
+      const data = {
+        firstName: this.state.firstName,
+        lastName: this.state.lastName,
+        email: this.state.email,
+        password: this.state.password,
+        recoveryEmail: this.state.recoveryEmail
+      };
+      this.props.signUp(data, this.props.history);
     }
   }
+  componentWillReceiveProps(nextProps) {
+    if (nextProps.errors) {
+      this.setState({ serverError: nextProps.errors.serverError });
+      this.setState({ isSubmitting: false });
+    }
+  }
+
   render() {
     const errors = this.state.validationErrors;
-    const { serverErrors } = this.state;
     const { isSubmitting } = this.state;
     return (
       <div className="container-signup">
@@ -76,11 +79,10 @@ class index extends Component {
         <div className="col-sp-1">
           <div id="signup_cont" className="signup  form col-1-lg">
             <h1>Get started here!</h1>
-            {serverErrors.message}
             <form id="signup-form" onSubmit={this.handleSubmit}>
               <InputForm
                 type="text"
-                errors={errors.inner}
+                errors={errors}
                 handleChange={this.handleChange}
                 label="First Name"
                 name="firstName"
@@ -97,9 +99,8 @@ class index extends Component {
                 id="lname"
                 values={this.state.lastName}
                 handleBlur={this.handleBlur}
-                errors={errors.inner}
+                errors={errors}
               />
-
               <InputForm
                 type="email"
                 handleChange={this.handleChange}
@@ -108,7 +109,7 @@ class index extends Component {
                 id="email"
                 values={this.state.email}
                 handleBlur={this.handleBlur}
-                errors={errors.inner}
+                errors={!errors ? this.state.serverError : errors}
               />
 
               <InputForm
@@ -119,7 +120,7 @@ class index extends Component {
                 id="password"
                 values={this.state.password}
                 handleBlur={this.handleBlur}
-                errors={errors.inner}
+                errors={errors}
               />
 
               <InputForm
@@ -130,7 +131,7 @@ class index extends Component {
                 id="recoveryEmail"
                 values={this.state.recoveryEmail}
                 handleBlur={this.handleBlur}
-                errors={errors.inner}
+                errors={errors}
               />
 
               <Button isSubmitting={isSubmitting}> Sign Up </Button>

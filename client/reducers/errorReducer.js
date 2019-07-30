@@ -5,7 +5,7 @@ const initialSate = {};
 export default (state = initialSate, action) => {
   switch (action.type) {
     case GET_ERRORS:
-      return action.payload;
+      return { ...state, serverError: action.payload };
     default:
       return state;
   }

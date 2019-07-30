@@ -9,5 +9,8 @@ module.exports = webPackMerge(baseConfig, {
     path: path.resolve(__dirname, "./dist"),
     filename: "app.js",
     publicPath: "/"
+  },
+  devServer: {
+    historyApiFallback: true
   }
 });

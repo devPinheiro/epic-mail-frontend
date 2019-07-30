@@ -16,17 +16,7 @@ const InputForm = props => {
       ) : (
         <Input {...props} />
       )}
-      {errors
-        ? errors.map((item, i) => {
-            if (item.path === name) {
-              return (
-                <span key={i} className="red">
-                  {item.message}
-                </span>
-              );
-            }
-          })
-        : ""}
+      {errors ? <small className="red">{errors[name]}</small> : ""}
     </div>
   );
 };
@@ -34,7 +24,7 @@ const InputForm = props => {
 InputForm.propTypes = {
   inputtype: PropTypes.string,
   name: PropTypes.string.isRequired,
-  errors: PropTypes.array,
+  errors: PropTypes.object,
   label: PropTypes.string
 };
 

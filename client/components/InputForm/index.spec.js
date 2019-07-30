@@ -7,7 +7,7 @@ afterEach(cleanup);
 describe("React Component Testing", () => {
   it("Should render an input field component", () => {
     const handleClick = jest.fn();
-    const errors = [{ message: "Email is required", path: "" }];
+    const errors = { email: "Email is required", path: "" };
     const { getByText } = render(
       <InputForm
         inputtype="input"
@@ -23,10 +23,7 @@ describe("React Component Testing", () => {
   });
   it("Should render a textarea field component", () => {
     const handleClick = jest.fn();
-    const errors = [
-      { message: "Textarea is required", path: "textarea" },
-      { message: "Textarea is required", path: "textarea" }
-    ];
+    const errors = { textarea: "Textarea is required", path: "textarea" };
     const { getByText } = render(
       <InputForm
         inputtype="textarea"
