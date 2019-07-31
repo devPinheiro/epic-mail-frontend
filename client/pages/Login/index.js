@@ -2,8 +2,8 @@ import React, { Component } from "react";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import { withRouter, Link } from "react-router-dom";
-import { signUp } from "../../actions/auth.action";
-import { SignUpValidator } from "../../validation/auth.validation";
+import { login } from "../../actions/auth.action";
+import { LoginValidator } from "../../validation/auth.validation";
 import Button from "../../components/Button";
 import InputForm from "../../components/InputForm";
 
@@ -12,11 +12,8 @@ class index extends Component {
     super();
 
     this.state = {
-      firstName: "",
-      lastName: "",
       email: "",
       password: "",
-      recoveryEmail: "",
       validationErrors: {},
       isSubmitting: false,
       serverError: {}
@@ -33,7 +30,7 @@ class index extends Component {
 
   handleBlur() {
     try {
-      SignUpValidator.validateSync(this.state, {
+      LoginValidator.validateSync(this.state, {
         abortEarly: false
       });
       this.setState({ validationErrors: null });
@@ -57,9 +54,10 @@ class index extends Component {
         firstName: this.state.firstName,
         lastName: this.state.lastName,
         email: this.state.email,
-        password: this.state.password
+        password: this.state.password,
+        recoveryEmail: this.state.recoveryEmail
       };
-      this.props.signUp(data, this.props.history);
+      this.props.login(data, this.props.history);
     }
   }
   componentDidMount() {
@@ -67,7 +65,12 @@ class index extends Component {
       this.props.history.push("/dashboard");
     }
   }
+
   componentWillReceiveProps(nextProps) {
+    if (nextProps.auth.isAuthenticated) {
+      // redirect
+      this.props.history.push("/dashboard");
+    }
     if (nextProps.errors) {
       this.setState({ serverError: nextProps.errors.serverError });
       this.setState({ isSubmitting: false });
@@ -81,30 +84,9 @@ class index extends Component {
       <div className="container-signup">
         <div className="col-sp-2" />
         <div className="col-sp-1">
-          <div id="signup_cont" className="signup  form col-1-lg">
-            <h1>Get started here!</h1>
+          <div id="signup_cont" className="login  form col-1-lg">
+            <h1>Take a peep into your account!</h1>
             <form id="signup-form" onSubmit={this.handleSubmit}>
-              <InputForm
-                type="text"
-                errors={errors}
-                handleChange={this.handleChange}
-                label="First Name"
-                name="firstName"
-                handleBlur={this.handleBlur}
-                id="fname"
-                values={this.state.firstName}
-              />
-
-              <InputForm
-                type="text"
-                handleChange={this.handleChange}
-                label="Last Name"
-                name="lastName"
-                id="lname"
-                values={this.state.lastName}
-                handleBlur={this.handleBlur}
-                errors={errors}
-              />
               <InputForm
                 type="email"
                 handleChange={this.handleChange}
@@ -127,14 +109,21 @@ class index extends Component {
                 errors={errors}
               />
 
-              <Button isSubmitting={isSubmitting}> Sign Up </Button>
+              <Button isSubmitting={isSubmitting}> Login </Button>
             </form>
 
             <div className="signup_options">
               <p>
-                Already have an account?{" "}
+                Don't have an account account?{" "}
+                <span className="signup_action ">
+                  <Link to="/signup">Sign up </Link>
+                </span>{" "}
+              </p>
+            </div>
+            <div className="signup_options text-center">
+              <p>
                 <span className="login_action">
-                  <Link to="/login">Sign in</Link>
+                  <Link to="/reset-password">Forgot your password? </Link>
                 </span>{" "}
               </p>
             </div>
@@ -146,7 +135,7 @@ class index extends Component {
 }
 
 index.propTypes = {
-  signUp: PropTypes.func.isRequired,
+  login: PropTypes.func.isRequired,
   auth: PropTypes.object.isRequired,
   history: PropTypes.object,
   errors: PropTypes.object
@@ -159,5 +148,5 @@ const mapStateToProps = state => ({
 
 export default connect(
   mapStateToProps,
-  { signUp }
+  { login }
 )(withRouter(index));

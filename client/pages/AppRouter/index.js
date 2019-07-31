@@ -5,15 +5,17 @@ import Header from "../../layout/Header";
 import Footer from "../../layout/Footer";
 import Landing from "../../pages/Home";
 import SignUp from "../SignUp";
+import Login from "../Login";
 import store from "../../store";
 
 const Main = withRouter(({ location }) => {
   return (
     <Provider store={store}>
-      {location.pathname !== "/signup" && <Header />}
+      {location.pathname !== ("/signup" && "/login") ? <Header /> : ""}
       <Route component={Landing} exact path="/" />
       <Route component={SignUp} exact path="/signup" />
-      {location.pathname !== "/signup" && <Footer />}
+      <Route component={Login} exact path="/login" />
+      {location.pathname !== ("/signup" && "/login") ? <Footer /> : ""}
     </Provider>
   );
 });
