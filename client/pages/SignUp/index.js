@@ -57,10 +57,14 @@ class index extends Component {
         firstName: this.state.firstName,
         lastName: this.state.lastName,
         email: this.state.email,
-        password: this.state.password,
-        recoveryEmail: this.state.recoveryEmail
+        password: this.state.password
       };
       this.props.signUp(data, this.props.history);
+    }
+  }
+  componentDidMount() {
+    if (this.props.auth.isAuthenticated) {
+      this.props.history.push("/dashboard");
     }
   }
   componentWillReceiveProps(nextProps) {
@@ -119,17 +123,6 @@ class index extends Component {
                 name="password"
                 id="password"
                 values={this.state.password}
-                handleBlur={this.handleBlur}
-                errors={errors}
-              />
-
-              <InputForm
-                type="email"
-                handleChange={this.handleChange}
-                label="Recovery Email"
-                name="recoveryEmail"
-                id="recoveryEmail"
-                values={this.state.recoveryEmail}
                 handleBlur={this.handleBlur}
                 errors={errors}
               />

@@ -11,7 +11,6 @@ import store from "../../store";
 const Main = withRouter(({ location }) => {
   return (
     <Provider store={store}>
-      {console.log(location.pathname)}
       {location.pathname !== ("/signup" && "/login") ? <Header /> : ""}
       <Route component={Landing} exact path="/" />
       <Route component={SignUp} exact path="/signup" />

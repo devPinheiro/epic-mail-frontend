@@ -5,7 +5,7 @@ import { setAuthToken } from "../utils";
 
 export const signUp = (data, history) => dispatch => {
   axios
-    .post("https://epicmail-application.herokuapp.com/api/v2/auth/signup", data)
+    .post("https://epic-mail-devp.herokuapp.com/api/v1/auth/signup", data)
     .then(res => {
       // store user token
       const userToken = res.data.data.token;
@@ -30,7 +30,7 @@ export const signUp = (data, history) => dispatch => {
 
 export const login = (data, history) => dispatch => {
   axios
-    .post("https://epicmail-application.herokuapp.com/api/v2/auth/login", data)
+    .post("https://epic-mail-devp.herokuapp.com/api/v1/auth/login", data)
     .then(res => {
       // store user token
       const userToken = res.data.data.token;
@@ -44,7 +44,7 @@ export const login = (data, history) => dispatch => {
     })
     .catch(err => {
       const formatError = {};
-      formatError["email"] = err.response.data.message;
+      formatError["email"] = err.response.data.error;
       dispatch({
         type: GET_ERRORS,
         payload: formatError
@@ -57,4 +57,11 @@ export const setCurrentUser = decoded => {
     type: SET_CURRENT_USER,
     payload: decoded
   };
+};
+
+export const logout = () => dispatch => {
+  // remove token
+  localStorage.removeItem("token");
+  setAuthToken(false);
+  dispatch(setCurrentUser({}));
 };
