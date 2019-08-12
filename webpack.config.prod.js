@@ -11,7 +11,7 @@ module.exports = webPackMerge(baseConfig, {
   output: {
     path: path.resolve(__dirname, "./dist"),
     filename: "app.js",
-    publicPath: "/dist/"
+    publicPath: "/"
   },
   optimization: {
     minimizer: [new TerserJSPlugin({}), new OptimizeCSSAssetsPlugin({})]

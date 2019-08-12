@@ -1,12 +1,12 @@
 import { SIGN_UP, SET_CURRENT_USER } from "../actions/types";
 import { isEmpty } from "../validation/auth.validation";
 
-const initialSate = {
+const initialState = {
   isAuthenticated: false,
   user: {}
 };
 
-export default (state = initialSate, action) => {
+export default (state = initialState, action) => {
   switch (action.type) {
     case SIGN_UP:
       return {

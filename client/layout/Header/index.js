@@ -3,11 +3,13 @@ import { Link } from "react-router-dom";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import { logout } from "../../actions/auth.action";
+import { clearProfile } from "../../actions/profile.action";
 
 export class index extends Component {
   handleLogout(e) {
     e.preventDefault();
-    this.props.logout();
+    this.props.clearProfile();
+    this.props.logout(this.props.history);
   }
   render() {
     const { isAuthenticated } = this.props.auth;
@@ -54,7 +56,9 @@ export class index extends Component {
 
 index.propTypes = {
   auth: PropTypes.object.isRequired,
-  logout: PropTypes.func.isRequired
+  history: PropTypes.object,
+  logout: PropTypes.func.isRequired,
+  clearProfile: PropTypes.func.isRequired
 };
 
 const mapStateToProps = state => ({
@@ -63,5 +67,5 @@ const mapStateToProps = state => ({
 
 export default connect(
   mapStateToProps,
-  { logout }
+  { logout, clearProfile }
 )(index);

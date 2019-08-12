@@ -1,23 +1,22 @@
 import React from "react";
 import PropTypes from "prop-types";
-const Button = ({ type, clicked, children, isSubmitting }) => {
+const Button = ({ type, clicked, children, isSubmitting, ...rest }) => {
   return (
-    <div className="form-group">
-      <button
-        type={type ? "button" : "submit"}
-        onClick={clicked}
-        disabled={isSubmitting}
-      >
-        {isSubmitting ? "Working..." : children}
-      </button>
-    </div>
+    <button
+      {...rest}
+      type={type ? "button" : "submit"}
+      onClick={clicked}
+      disabled={isSubmitting}
+    >
+      {isSubmitting ? "Working..." : children}
+    </button>
   );
 };
 
 Button.propTypes = {
   type: PropTypes.string,
   clicked: PropTypes.func,
-  children: PropTypes.string.isRequired,
+  children: PropTypes.any.isRequired,
   isSubmitting: PropTypes.bool
 };
 

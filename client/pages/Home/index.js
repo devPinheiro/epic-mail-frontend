@@ -5,7 +5,7 @@ class Home extends Component {
   render() {
     return (
       <div className="container-main">
-        <div className="container-grid-2 hero">
+        <div className="container-grid-2 banner">
           <div className="col-1 hero-l">
             <h1 className="text-light title">
               Create Mails conveniently
