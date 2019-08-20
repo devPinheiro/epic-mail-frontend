@@ -5,6 +5,7 @@ import Main from "../pages/AppRouter";
 import { setAuthToken } from "../utils";
 import store from "../store";
 import { setCurrentUser, logout } from "../actions/auth.action";
+import { clearProfile, getProfile } from "../actions/profile.action";
 
 if (localStorage.token) {
   // set auth token
@@ -13,9 +14,14 @@ if (localStorage.token) {
   const decoded = jwt_decode(localStorage.token);
   // set current user
   store.dispatch(setCurrentUser(decoded));
+
+  store.dispatch(getProfile(localStorage.token));
   // for expired token
   const currentTime = Date.now() / 1000;
   if (decoded.exp < currentTime) {
+    // clear current user profile
+    store.dispatch(clearProfile());
+    // logout current user
     store.dispatch(logout());
     window.location.href = "/";
   }

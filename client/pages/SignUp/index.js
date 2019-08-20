@@ -126,8 +126,9 @@ class index extends Component {
                 handleBlur={this.handleBlur}
                 errors={errors}
               />
-
-              <Button isSubmitting={isSubmitting}> Sign Up </Button>
+              <div className="form-group">
+                <Button isSubmitting={isSubmitting}> Sign Up </Button>
+              </div>
             </form>
 
             <div className="signup_options">

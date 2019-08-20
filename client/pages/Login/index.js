@@ -60,11 +60,6 @@ class index extends Component {
       this.props.login(data, this.props.history);
     }
   }
-  componentDidMount() {
-    if (this.props.auth.isAuthenticated) {
-      this.props.history.push("/dashboard");
-    }
-  }
 
   componentWillReceiveProps(nextProps) {
     if (nextProps.auth.isAuthenticated) {
@@ -108,8 +103,9 @@ class index extends Component {
                 handleBlur={this.handleBlur}
                 errors={errors}
               />
-
-              <Button isSubmitting={isSubmitting}> Login </Button>
+              <div className="form-group">
+                <Button isSubmitting={isSubmitting}> Login </Button>
+              </div>
             </form>
 
             <div className="signup_options">
@@ -120,13 +116,7 @@ class index extends Component {
                 </span>{" "}
               </p>
             </div>
-            <div className="signup_options text-center">
-              <p>
-                <span className="login_action">
-                  <Link to="/reset-password">Forgot your password? </Link>
-                </span>{" "}
-              </p>
-            </div>
+            <div className="signup_options text-center"></div>
           </div>
         </div>
       </div>

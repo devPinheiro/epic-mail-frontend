@@ -2,6 +2,7 @@ import axios from "axios";
 import jwt_decode from "jwt-decode";
 import { GET_ERRORS, SET_CURRENT_USER } from "./types";
 import { setAuthToken } from "../utils";
+import { getProfile } from "./profile.action";
 
 export const signUp = (data, history) => dispatch => {
   axios
@@ -39,6 +40,8 @@ export const login = (data, history) => dispatch => {
       const user = jwt_decode(userToken);
       // set current user
       dispatch(setCurrentUser(user));
+      // set user profile
+      dispatch(getProfile(userToken));
       localStorage.setItem("token", userToken);
       history.push("/dashboard");
     })
@@ -59,9 +62,10 @@ export const setCurrentUser = decoded => {
   };
 };
 
-export const logout = () => dispatch => {
+export const logout = history => dispatch => {
   // remove token
   localStorage.removeItem("token");
   setAuthToken(false);
   dispatch(setCurrentUser({}));
+  history.push("/");
 };

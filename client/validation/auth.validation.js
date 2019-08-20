@@ -16,6 +16,14 @@ export const LoginValidator = Yup.object().shape({
   password: Yup.string().min(8, "Password must be greater than 8 characters")
 });
 
+export const mailValidator = Yup.object().shape({
+  email: Yup.string()
+    .email()
+    .required("Email is required"),
+  mail_body: Yup.string().min(8, "Message must be at least 8 characters"),
+  subject: Yup.string().min(3, "Subject must be at least 8 characters")
+});
+
 export const isEmpty = value =>
   value === undefined ||
   value === null ||

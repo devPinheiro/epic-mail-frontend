@@ -67,6 +67,16 @@ section {
   box-shadow: 0px 0px 2px 1px #f9f9f9;
 }
 
+.compose-mail .box-top .date {
+  float: right;
+  padding-right: 10px;
+}
+
+.box-top .title {
+  font-weight: bolder;
+  font-size: 24px;
+}
+
 .compose-mail-form {
   width: 100%;
   padding: 25px 5px;
@@ -100,10 +110,11 @@ section {
 
 .form-g button {
   display: inline;
-  padding: 10px 20px;
+  padding: 8px 40px;
   border-radius: 2px;
   margin-top: 25px;
   border: none;
+  font-size: 20px;
   background-color: #e68016;
   color: #fff;
   font-weight: 600;
@@ -183,7 +194,6 @@ section {
 
 .dropdown-fill {
   display: none;
-  margin: 5px 0;
   padding: 10px 0;
   position: absolute;
   right: 20px;
@@ -376,6 +386,13 @@ section {
   display: inline-flex;
   width: 100%;
   padding: 10px 3px !important;
+  margin-bottom: 5px;
+  border-bottom: 1px solid #eeeded;
+}
+
+.box:hover {
+  background: #eeeded;
+  cursor: pointer;
 }
 
 .box-top {
@@ -408,6 +425,17 @@ section {
 
 .dropdown_btn {
   padding-right: 20px;
+}
+.banner {
+  background-position: center;
+  background-size: cover;
+  background: linear-gradient(
+      to bottom,
+      rgba(2, 1, 17, 0.6) 0%,
+      rgba(2, 1, 17, 0.6) 75%,
+      rgba(2, 1, 17, 0.87) 100%
+    ),
+    url("../../public/images/COPY.jpg") no-repeat;
 }
 
 /* ----------------------container --------------- */
@@ -537,6 +565,17 @@ section {
   text-align: center;
   background-color: #ffffff;
 }
+
+/* ------------- Nav ----------- */
+
+.open-sidebar {
+  width: 200px !important;
+}
+
+.collapsePane {
+  margin-left: 200px;
+}
+f
 
 /* ------------------------------ Hero ----------------- */
 
@@ -900,7 +939,7 @@ a {
   }
 
   .app {
-    margin-top: 90px;
+    margin-top: 47px;
   }
 
   .sidebar {
@@ -939,6 +978,8 @@ a {
   .main-brand {
     display: inline-flex;
     padding: 5px 20px;
+    position: relative;
+    bottom: 17px;
   }
 
   .main-brand p {
@@ -1057,7 +1098,7 @@ a {
   }
 
   .main-brand p {
-    padding: 0 100px;
+    padding: 0 40px;
   }
   #showGroups {
     width: 100%;
@@ -1070,7 +1111,7 @@ a {
   }
 }
 
-@media (min-width: 320px) and (max-width: 350px) {
+@media (min-width: 300px) and (max-width: 350px) {
   .navbar .form-group input {
     display: block;
     width: 90%;
@@ -1091,6 +1132,12 @@ a {
     display: block;
     grid-gap: 1px;
     grid-template-columns: 1fr auto;
+  }
+
+  .main-brand p {
+    text-align: center;
+    padding: 0 20px;
+    margin: 0 auto;
   }
 
   .container-grid-mail-action {
