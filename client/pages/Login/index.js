@@ -7,7 +7,7 @@ import { LoginValidator } from "../../validation/auth.validation";
 import Button from "../../components/Button";
 import InputForm from "../../components/InputForm";
 
-class index extends Component {
+export class index extends Component {
   constructor() {
     super();
 
@@ -104,7 +104,10 @@ class index extends Component {
                 errors={errors}
               />
               <div className="form-group">
-                <Button isSubmitting={isSubmitting}> Login </Button>
+                <Button isSubmitting={isSubmitting} className="login">
+                  {" "}
+                  Login{" "}
+                </Button>
               </div>
             </form>
 

@@ -4,7 +4,7 @@ import { GET_ERRORS, INBOX, LOADING, LOADING_DONE } from "./types";
 export const inbox = () => dispatch => {
   dispatch(inboxLoading());
   const tokenId = localStorage.getItem("token");
-  axios
+  return axios
     .get("https://epic-mail-devp.herokuapp.com/api/v1/messages", {
       method: "get",
       mode: "cors",

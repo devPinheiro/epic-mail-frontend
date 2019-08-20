@@ -6,7 +6,7 @@ import { Link } from "react-router-dom";
 import List from "../../../components/List";
 import { inbox } from "../../../actions/inbox.action";
 
-class index extends Component {
+export class index extends Component {
   constructor() {
     super();
 
@@ -15,7 +15,7 @@ class index extends Component {
       serverError: {}
     };
   }
-  componentDidMount() {
+  componentWillMount() {
     this.setState({ loading: true });
     this.props.inbox();
   }

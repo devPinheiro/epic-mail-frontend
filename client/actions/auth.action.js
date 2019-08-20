@@ -5,7 +5,7 @@ import { setAuthToken } from "../utils";
 import { getProfile } from "./profile.action";
 
 export const signUp = (data, history) => dispatch => {
-  axios
+  return axios
     .post("https://epic-mail-devp.herokuapp.com/api/v1/auth/signup", data)
     .then(res => {
       // store user token
@@ -30,7 +30,7 @@ export const signUp = (data, history) => dispatch => {
 };
 
 export const login = (data, history) => dispatch => {
-  axios
+  return axios
     .post("https://epic-mail-devp.herokuapp.com/api/v1/auth/login", data)
     .then(res => {
       // store user token
