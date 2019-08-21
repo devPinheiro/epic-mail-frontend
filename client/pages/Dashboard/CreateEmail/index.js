@@ -133,7 +133,7 @@ export class index extends Component {
 
                 <div className="form-g">
                   <Button
-                    className="btn btn-primary"
+                    className="btn btn-primary compose"
                     isSubmitting={isSubmitting}
                   >
                     {" "}

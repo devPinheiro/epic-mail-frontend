@@ -3,7 +3,7 @@ import { GET_PROFILE, LOADING, CLEAR_PROFILE, LOADING_DONE } from "./types";
 
 export const getProfile = token => dispatch => {
   dispatch(profileLoading());
-  axios
+  return axios
     .get("https://epic-mail-devp.herokuapp.com/api/v1/auth/user", {
       method: "get",
       mode: "cors",
