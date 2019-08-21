@@ -7,7 +7,7 @@ import { LoginValidator } from "../../validation/auth.validation";
 import Button from "../../components/Button";
 import InputForm from "../../components/InputForm";
 
-class index extends Component {
+export class index extends Component {
   constructor() {
     super();
 
@@ -77,7 +77,11 @@ class index extends Component {
     const { isSubmitting } = this.state;
     return (
       <div className="container-signup">
-        <div className="col-sp-2" />
+        <div className="col-sp-2">
+          <div className="svg">
+            <img src="../../../public/images/mail.png" alt="mail" />
+          </div>
+        </div>
         <div className="col-sp-1">
           <div id="signup_cont" className="login  form col-1-lg">
             <h1>Take a peep into your account!</h1>
@@ -104,7 +108,10 @@ class index extends Component {
                 errors={errors}
               />
               <div className="form-group">
-                <Button isSubmitting={isSubmitting}> Login </Button>
+                <Button isSubmitting={isSubmitting} className="login">
+                  {" "}
+                  Login{" "}
+                </Button>
               </div>
             </form>
 

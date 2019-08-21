@@ -10,6 +10,7 @@ import Dashboard from "../Dashboard/Inbox";
 import Compose from "../Dashboard/CreateEmail";
 import store from "../../store";
 import PrivateRoute from "./PrivateRoute";
+import Sent from "../Dashboard/Sent";
 
 const Main = withRouter(({ location }) => {
   return (
@@ -20,6 +21,7 @@ const Main = withRouter(({ location }) => {
         (["/"].includes(location.pathname) && <Header />)}
       <Switch>
         <PrivateRoute component={Dashboard} exact path="/dashboard" />
+        <PrivateRoute component={Sent} exact path="/sent" />
         <PrivateRoute component={Compose} exact path="/compose" />
       </Switch>
       <Route component={Landing} exact path="/" />

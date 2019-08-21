@@ -4,12 +4,11 @@ import { connect } from "react-redux";
 import PropTypes from "prop-types";
 import { Link } from "react-router-dom";
 import List from "../../../components/List";
-import { inbox } from "../../../actions/inbox.action";
+import { sent } from "../../../actions/sent.action";
 
 export class index extends Component {
   constructor() {
     super();
-
     this.state = {
       loading: false,
       serverError: {}
@@ -17,7 +16,7 @@ export class index extends Component {
   }
   componentWillMount() {
     this.setState({ loading: true });
-    this.props.inbox();
+    this.props.sent();
   }
   render() {
     const { openNav } = this.props.nav;
@@ -68,16 +67,16 @@ export class index extends Component {
 
 index.propTypes = {
   nav: PropTypes.object,
-  inbox: PropTypes.func,
+  sent: PropTypes.func,
   messages: PropTypes.array
 };
 
 const mapStateToProps = state => ({
   nav: state.nav,
-  messages: state.inbox.messages
+  messages: state.sent.sentMails
 });
 
 export default connect(
   mapStateToProps,
-  { inbox }
+  { sent }
 )(index);

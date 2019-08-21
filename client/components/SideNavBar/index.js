@@ -24,7 +24,7 @@ class index extends Component {
                 </Link>
               </li>
               <li>
-                <Link className="item" to="/dashboard">
+                <Link className="item" to="/sent">
                   <i className="ion-ios-email-outline icon-lg-nav "></i> Sent{" "}
                 </Link>
               </li>

@@ -3,7 +3,7 @@ import { GET_ERRORS, SUCCESS_MAIL } from "./types";
 
 export const composeMail = (data, history) => dispatch => {
   const tokenId = localStorage.getItem("token");
-  axios
+  return axios
     .post("https://epic-mail-devp.herokuapp.com/api/v1/messages", data, {
       method: "get",
       mode: "cors",
