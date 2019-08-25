@@ -79,7 +79,11 @@ export class index extends Component {
     const { isSubmitting } = this.state;
     return (
       <div className="container-signup">
-        <div className="col-sp-2" />
+        <div className="col-sp-2">
+          <div className="svg">
+            <img src="../../../public/images/mail.png" alt="mail" />
+          </div>
+        </div>
         <div className="col-sp-1">
           <div id="signup_cont" className="signup  form col-1-lg">
             <h1>Get started here!</h1>

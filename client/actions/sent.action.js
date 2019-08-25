@@ -1,11 +1,11 @@
 import axios from "axios";
-import { GET_ERRORS, INBOX, LOADING, LOADING_DONE } from "./types";
+import { SENT_MAIL_SUCCESS, SENT_MAIL_START, SENT_MAIL_FAIL } from "./types";
 
-export const inbox = () => dispatch => {
-  dispatch(inboxLoading());
+export const sent = () => dispatch => {
+  dispatch(sentMailStart());
   const tokenId = localStorage.getItem("token");
   return axios
-    .get("https://epic-mail-devp.herokuapp.com/api/v1/messages", {
+    .get("https://epic-mail-devp.herokuapp.com/api/v1/messages/sent", {
       method: "get",
       mode: "cors",
       headers: {
@@ -20,36 +20,36 @@ export const inbox = () => dispatch => {
       // dispatch a success message
 
       if (result.status === 200) {
-        dispatch(sendSuccessMessage(result.data));
-        dispatch(inboxLoadingDone());
+        dispatch(sentMailSuccess(result.data));
       }
       history.push("/dashboard");
     })
     .catch(err => {
       if (err.response) {
         dispatch({
-          type: GET_ERRORS,
+          type: SENT_MAIL_FAIL,
           payload: err.response.data.error
         });
       }
     });
 };
 
-export const sendSuccessMessage = payload => {
+export const sentMailSuccess = payload => {
   return {
-    type: INBOX,
+    type: SENT_MAIL_SUCCESS,
     payload
   };
 };
 
-export const inboxLoading = () => {
+export const sentMailStart = () => {
   return {
-    type: LOADING
+    type: SENT_MAIL_START
   };
 };
 
-export const inboxLoadingDone = () => {
+export const sentMailFail = payload => {
   return {
-    type: LOADING_DONE
+    type: SENT_MAIL_FAIL,
+    payload
   };
 };

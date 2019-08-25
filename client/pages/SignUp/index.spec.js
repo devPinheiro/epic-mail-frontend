@@ -16,7 +16,8 @@ describe("Signup component Tests", () => {
   const defaultProps = {
     signUp: jest.fn(),
     errors: {},
-    auth: {}
+    auth: {},
+    handleSubmit: jest.fn()
   };
 
   it("renders the Signup component correctly", () => {
@@ -40,6 +41,22 @@ describe("Signup component Tests", () => {
       </BrowserRouter>
     );
     expect(component.find(".signup")).toBeTruthy();
+  });
+
+  it(`should ensure submit button text on sign up is rendered appropriately`, () => {
+    const component = shallow(<SignUpPage {...defaultProps} />);
+    const instance = component.instance();
+
+    instance.handleSubmit({ preventDefault() {} });
+    instance.componentWillReceiveProps({
+      auth: {
+        isAuthenticated: true,
+        user: {},
+        errors: {
+          serverErrors: ""
+        }
+      }
+    });
   });
 
   it("should simulate an onchange event on form input", () => {

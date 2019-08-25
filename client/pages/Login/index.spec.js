@@ -13,11 +13,32 @@ configure({ adapter: new Adapter() });
 
 describe("Login component Tests", () => {
   const defaultProps = {
-    login: jest.fn(),
+    login: jest.fn(
+      {},
+      {
+        history: {
+          push: jest.fn()
+        }
+      }
+    ),
     errors: {},
-    auth: {}
+    auth: {
+      isAuthenticated: true,
+      user: {}
+    },
+    handleSubmit: jest.fn(),
+    history: {
+      push: jest.fn()
+    }
   };
 
+  const state = {
+    email: "",
+    password: "",
+    validationErrors: {},
+    isSubmitting: false,
+    serverError: {}
+  };
   it("renders the Login component correctly", () => {
     const wrapper = shallow(<LoginPage {...defaultProps} />);
     expect(wrapper).toMatchSnapshot();
@@ -30,6 +51,27 @@ describe("Login component Tests", () => {
       </BrowserRouter>
     );
     component.find("form").simulate("submit");
+  });
+
+  it(`should ensure submit button text on sign in is rendered appropriately`, () => {
+    const component = shallow(<LoginPage {...defaultProps} />);
+    const instance = component.instance();
+    instance.handleSubmit({ preventDefault() {} });
+  });
+
+  it(`should ensure submit button text on sign in is rendered appropriately`, () => {
+    const component = shallow(<LoginPage {...defaultProps} {...state} />);
+    const instance = component.instance();
+    instance.componentWillReceiveProps({
+      auth: {
+        isAuthenticated: true,
+        user: {},
+        errors: {
+          serverErrors: ""
+        }
+      }
+    });
+    instance.setState({ serverError: "" });
   });
 
   it(`should ensure submit button text on sign in is rendered appropriately`, () => {

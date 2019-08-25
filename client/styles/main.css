@@ -181,8 +181,14 @@ section {
 }
 
 /* --------------------------- SVG -------------------- */
-.svg {
+.svg img {
   padding-top: 75px;
+  width: 100%;
+}
+
+.svg {
+  max-width: 600px;
+  margin: auto;
 }
 
 /* ----------------- Dropdown ------------ */

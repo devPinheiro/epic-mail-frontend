@@ -14,3 +14,6 @@ export const COMPOSE_MAIL = "COMPOSE_MAIL";
 export const COMPOSE_DRAFT = "COMPOSE_DRAFT";
 export const SUCCESS_MAIL = "SUCCESS_MAIL";
 export const INBOX = "INBOX";
+export const SENT_MAIL_START = "SENT_MAIL_START";
+export const SENT_MAIL_SUCCESS = "SENT_MAIL_SUCCESS";
+export const SENT_MAIL_FAIL = "SENT_MAIL_FAIL";
