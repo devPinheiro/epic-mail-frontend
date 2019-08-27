@@ -79,7 +79,10 @@ export class index extends Component {
       <div className="container-signup">
         <div className="col-sp-2">
           <div className="svg">
-            <img src="../../../public/images/mail.png" alt="mail" />
+            <img
+              src="https://res.cloudinary.com/appnet/image/upload/v1566891578/Epic%20Mail/mail.png"
+              alt="mail"
+            />
           </div>
         </div>
         <div className="col-sp-1">
