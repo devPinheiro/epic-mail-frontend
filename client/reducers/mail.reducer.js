@@ -1,5 +1,5 @@
 import {
-  GET_ERRORS,
+  SUCCESS_FAIL,
   LOADING,
   LOADING_DONE,
   SUCCESS_MAIL
@@ -13,10 +13,10 @@ const initialState = {
 
 export default (state = initialState, action) => {
   switch (action.type) {
-    case GET_ERRORS:
+    case SUCCESS_FAIL:
       return {
         ...state,
-        serverErrors: action.payload,
+        serverErrors: "fail",
         success: ""
       };
     case LOADING:

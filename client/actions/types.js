@@ -13,6 +13,7 @@ export const CLOSE_SIDEBAR = "CLOSE_SIDEBAR";
 export const COMPOSE_MAIL = "COMPOSE_MAIL";
 export const COMPOSE_DRAFT = "COMPOSE_DRAFT";
 export const SUCCESS_MAIL = "SUCCESS_MAIL";
+export const SUCCESS_FAIL = "SUCCESS_FAIL";
 export const INBOX = "INBOX";
 export const SENT_MAIL_START = "SENT_MAIL_START";
 export const SENT_MAIL_SUCCESS = "SENT_MAIL_SUCCESS";

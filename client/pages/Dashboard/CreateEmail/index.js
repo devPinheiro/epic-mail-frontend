@@ -72,9 +72,7 @@ export class index extends Component {
   }
 
   render() {
-    const errors = this.props.errors;
     const validator = this.state.validationErrors;
-    const success = this.props.success;
     const { openNav } = this.props.nav;
     const { isSubmitting } = this.state;
     return (
@@ -85,9 +83,6 @@ export class index extends Component {
               <div className="app-title">
                 <h4> Compose New Mail</h4>
               </div>
-
-              {errors ? <span className="red">{errors}</span> : ""}
-              {success ? <span className="green">{success}</span> : ""}
 
               <form className="compose-mail-form" onSubmit={this.handleSubmit}>
                 <div id="receiverInput" className="form-g">

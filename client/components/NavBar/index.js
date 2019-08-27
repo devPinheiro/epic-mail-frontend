@@ -38,7 +38,7 @@ class index extends React.Component {
     if (nextProps) {
       this.setState({ loading: nextProps.profile.loading });
     }
-    if (!nextProps.profile.loading) {
+    if (nextProps.profile.profile) {
       this.setState({ profile: nextProps.profile.profile.data });
     }
   }

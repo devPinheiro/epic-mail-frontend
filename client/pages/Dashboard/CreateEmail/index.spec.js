@@ -58,7 +58,7 @@ describe("Compose action test", () => {
     it("Should return a new state if it receives GET_ERRORS in action type", () => {
       const state = {
         loading: false,
-        serverErrors: undefined,
+        serverErrors: "",
         success: ""
       };
       const newState = composeReducer(initialState, {

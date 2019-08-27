@@ -1,7 +1,8 @@
 import axios from "axios";
-import { GET_ERRORS, SUCCESS_MAIL } from "./types";
+import { SUCCESS_MAIL, SUCCESS_FAIL } from "./types";
+import { toast } from "react-toastify";
 
-export const composeMail = (data, history) => dispatch => {
+export const composeMail = data => dispatch => {
   const tokenId = localStorage.getItem("token");
   return axios
     .post("https://epic-mail-devp.herokuapp.com/api/v1/messages", data, {
@@ -19,14 +20,14 @@ export const composeMail = (data, history) => dispatch => {
       // dispatch a success message
       if (result.status === 201) {
         dispatch(sendSuccessMessage("Mail sent successfully"));
+        toast.success("Mail sent successfully");
       }
-      history.push("/dashboard");
     })
     .catch(err => {
-      dispatch({
-        type: GET_ERRORS,
-        payload: err.response.data.error
-      });
+      if (err.response) {
+        toast.error(err.response.data.error);
+      }
+      dispatch(sendFail());
     });
 };
 
@@ -34,5 +35,11 @@ export const sendSuccessMessage = payload => {
   return {
     type: SUCCESS_MAIL,
     payload
+  };
+};
+
+export const sendFail = () => {
+  return {
+    type: SUCCESS_FAIL
   };
 };

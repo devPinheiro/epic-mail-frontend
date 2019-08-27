@@ -1,5 +1,5 @@
 import axios from "axios";
-import { GET_ERRORS, INBOX, LOADING, LOADING_DONE } from "./types";
+import { INBOX, LOADING, LOADING_DONE } from "./types";
 
 export const inbox = () => dispatch => {
   dispatch(inboxLoading());
@@ -22,15 +22,6 @@ export const inbox = () => dispatch => {
       if (result.status === 200) {
         dispatch(sendSuccessMessage(result.data));
         dispatch(inboxLoadingDone());
-      }
-      history.push("/dashboard");
-    })
-    .catch(err => {
-      if (err.response) {
-        dispatch({
-          type: GET_ERRORS,
-          payload: err.response.data.error
-        });
       }
     });
 };
