@@ -28,12 +28,7 @@ export class index extends Component {
           <section className="mail-app compose-mail">
             <div className="app-title container-grid-mail-action">
               <span>
-                <h4>
-                  {" "}
-                  <Link to="/dashboard">
-                    <i className="ion-chevron-left icon"></i>Inbox
-                  </Link>
-                </h4>
+                <h4> Inbox</h4>
               </span>
 
               <div className="text-right mail-action-btn">
@@ -49,9 +44,7 @@ export class index extends Component {
                   return <List {...item} key={i} />;
                 })
               ) : (
-                <h5 className="text-center">
-                  Oops! You don't have any messages yet
-                </h5>
+                <h5 className="text-center">Loading...</h5>
               )}
             </div>
           </section>
@@ -69,7 +62,7 @@ export class index extends Component {
 index.propTypes = {
   nav: PropTypes.object,
   inbox: PropTypes.func,
-  messages: PropTypes.array
+  messages: PropTypes.any
 };
 
 const mapStateToProps = state => ({

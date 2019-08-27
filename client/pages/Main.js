@@ -2,10 +2,12 @@ import React, { Component } from "react";
 import jwt_decode from "jwt-decode";
 import { BrowserRouter as Router } from "react-router-dom";
 import Main from "../pages/AppRouter";
+import "react-toastify/dist/ReactToastify.css";
 import { setAuthToken } from "../utils";
 import store from "../store";
 import { setCurrentUser, logout } from "../actions/auth.action";
 import { clearProfile, getProfile } from "../actions/profile.action";
+import { ToastContainer, Slide } from "react-toastify";
 
 if (localStorage.token) {
   // set auth token
@@ -14,6 +16,7 @@ if (localStorage.token) {
   const decoded = jwt_decode(localStorage.token);
   // set current user
   store.dispatch(setCurrentUser(decoded));
+  getProfile(localStorage.token);
 
   store.dispatch(getProfile(localStorage.token));
   // for expired token
@@ -31,6 +34,11 @@ class App extends Component {
   render() {
     return (
       <Router>
+        <ToastContainer
+          autoClose={3000}
+          transition={Slide}
+          position="top-center"
+        />
         <Main />
       </Router>
     );
