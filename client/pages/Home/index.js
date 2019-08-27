@@ -25,7 +25,10 @@ class Home extends Component {
 
           <div className="col-2 hero-r">
             <div className="hero-img">
-              <img src="../../../public/images/data.png" alt="" />
+              <img
+                src="https://res.cloudinary.com/appnet/image/upload/v1566891621/Epic%20Mail/data.png"
+                alt=""
+              />
             </div>
           </div>
         </div>
@@ -33,7 +36,10 @@ class Home extends Component {
         <div className="container-grid-2 section_a">
           <div className="col-1 hero-r">
             <div className="hero-img text-center">
-              <img alt="" src="../../../public/images/undraw_emails_6uqr.png" />
+              <img
+                alt=""
+                src="https://res.cloudinary.com/appnet/image/upload/v1566891646/Epic%20Mail/undraw_emails_6uqr.png"
+              />
             </div>
           </div>
 
@@ -66,7 +72,7 @@ class Home extends Component {
             <div className="hero-img text-center">
               <img
                 alt=""
-                src="../../../public/images/undraw_message_sent_1030.png"
+                src="https://res.cloudinary.com/appnet/image/upload/v1566891646/Epic%20Mail/undraw_message_sent_1030.png"
               ></img>
             </div>
           </div>
