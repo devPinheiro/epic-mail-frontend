@@ -29,7 +29,7 @@ class index extends Component {
                 </Link>
               </li>
               <li>
-                <Link className="item" to="/dashboard">
+                <Link className="item" to="/draft">
                   <i className="ion-ios-box-outline icon-lg-nav"></i> Draft{" "}
                 </Link>
               </li>
