@@ -219,6 +219,10 @@ section {
   color: #222222;
 }
 
+.display-flex {
+  display: flex;
+}
+
 .dropdown-fill a:hover {
   background-color: #fbfbfb;
 }

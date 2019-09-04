@@ -6,6 +6,7 @@ import navReducer from "./nav.reducer";
 import mailReducer from "./mail.reducer";
 import inboxReducer from "./inbox.reducer";
 import sentReducer from "./sent.reducer";
+import draftReducer from "./draft.reducer";
 
 export default combineReducers({
   auth: authReducer,
@@ -14,5 +15,6 @@ export default combineReducers({
   nav: navReducer,
   mail: mailReducer,
   inbox: inboxReducer,
-  sent: sentReducer
+  sent: sentReducer,
+  draft: draftReducer
 });

@@ -4,7 +4,7 @@ import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import InputForm from "../../../components/InputForm";
 import Button from "../../../components/Button";
-import { composeMail } from "../../../actions/composeMail.action";
+import { composeMail, draftMail } from "../../../actions/composeMail.action";
 import { mailValidator } from "../../../validation/auth.validation";
 export class index extends Component {
   constructor() {
@@ -23,6 +23,7 @@ export class index extends Component {
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
     this.handleBlur = this.handleBlur.bind(this);
+    this.handleDraft = this.handleDraft.bind(this);
   }
 
   handleChange(e) {
@@ -42,6 +43,22 @@ export class index extends Component {
       error.inner.forEach(error => (formatError[error.path] = error.message));
 
       this.setState({ validationErrors: formatError });
+    }
+  }
+
+  handleDraft(e) {
+    e.preventDefault();
+    this.handleBlur();
+    const { validationErrors } = this.state;
+    if (!validationErrors) {
+      this.setState({ isSubmitting: true });
+      const data = {
+        email: this.state.email,
+        subject: this.state.subject,
+        message: this.state.mail_body,
+        draft: "draft"
+      };
+      this.props.draftMail(data, this.props.history);
     }
   }
 
@@ -126,14 +143,28 @@ export class index extends Component {
                   />
                 </div>
 
-                <div className="form-g">
-                  <Button
-                    className="btn btn-primary compose"
-                    isSubmitting={isSubmitting}
-                  >
-                    {" "}
-                    Send
-                  </Button>
+                <div className="display-flex">
+                  <div className="form-g">
+                    <Button
+                      className="btn btn-primary compose"
+                      isSubmitting={isSubmitting}
+                    >
+                      {" "}
+                      Send
+                    </Button>
+                  </div>
+
+                  <div className="form-g">
+                    <Button
+                      type="button"
+                      clicked={this.handleDraft}
+                      className="btn btn-primary compose"
+                      isSubmitting={isSubmitting}
+                    >
+                      {" "}
+                      Draft
+                    </Button>
+                  </div>
                 </div>
               </form>
             </section>
@@ -145,6 +176,7 @@ export class index extends Component {
 }
 index.propTypes = {
   composeMail: PropTypes.func.isRequired,
+  draftMail: PropTypes.func.isRequired,
   auth: PropTypes.object.isRequired,
   history: PropTypes.object,
   errors: PropTypes.string,
@@ -161,5 +193,5 @@ const mapStateToProps = state => ({
 
 export default connect(
   mapStateToProps,
-  { composeMail }
+  { composeMail, draftMail }
 )(index);
